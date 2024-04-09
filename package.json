@@ -1,0 +1,16 @@
+{
+  "name": "oct23-t3w2-intro-to-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pokemon": "^3.0.0"
+  }
+}
