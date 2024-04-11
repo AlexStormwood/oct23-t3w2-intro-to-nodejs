@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { CustomFancyError } = require('./customError');
 // The above is equivalent to the next two lines:
 // const dotenv = require('dotenv');
 // dotenv.config();
@@ -34,7 +35,8 @@ function app() {
 		// console.log("Input is not a number:" + Number.isNaN(n));
 
 		if (Number.isNaN(n)){
-			throw new Error("User did not enter a number!");
+			// throw new Error("User did not enter a number!");
+			throw new CustomFancyError("Custom error for NaN!");
 		}
 
 		// Give number to pokemon package and get result
@@ -45,17 +47,14 @@ function app() {
 			console.log(`Your Pokemon is ${pokemonName}! How exciting!`);
 		} catch (error) {
 			console.log("Try a number between 1 and 1025!");
-		}
+		} finally {
+			let userInputToExit = prompt("Would you like to try again?");
 
-
-		// console.log("You entered " + n);
-
-		let userInputToExit = prompt("Would you like to try again?");
-
-		if (userInputToExit == "y"){
-			userWantsToExit = false;
-		} else {
-			userWantsToExit = true;
+			if (userInputToExit == "y"){
+				userWantsToExit = false;
+			} else {
+				userWantsToExit = true;
+			}
 		}
 
 	} while (userWantsToExit == false);
@@ -67,6 +66,7 @@ try {
 } catch (error) {
 	console.log("Gracefully shutting down...");
 	console.log(error.message);
+	console.log(JSON.stringify(error));
 	// Full error obj has stacktrace, users should not see that:
 	// console.log(error);
 }
